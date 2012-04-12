@@ -69,16 +69,22 @@ class Geminabox < Sinatra::Base
     erb :upload
   end
 
+  #remove support for reindex
+=begin
   get '/reindex' do
     reindex(:force_rebuild)
     redirect url("/")
   end
+=end
 
+  #remove support for delete
+=begin
   delete '/gems/*.gem' do
     File.delete file_path if File.exists? file_path
     reindex(:force_rebuild)
     redirect url("/")
   end
+=end
 
   post '/upload' do
     if File.exists? Geminabox.data
