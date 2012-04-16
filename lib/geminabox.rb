@@ -86,6 +86,12 @@ class Geminabox < Sinatra::Base
   end
 =end
 
+  delete '/gems' do
+    FileUtils.rm_rf File.expand_path(File.join(Geminabox.data, "gems"))
+    reindex(:force_rebuild)
+    redirect url("/")
+  end
+
   post '/upload' do
     if File.exists? Geminabox.data
       error_response( 500, "Please ensure #{File.expand_path(Geminabox.data)} is writable by the geminabox web server." ) unless File.writable? Geminabox.data

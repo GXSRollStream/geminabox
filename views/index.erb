@@ -1,6 +1,4 @@
 <% if @gems.any? %>
-  <a href="<%= url("/upload") %>">Upload Another Gem</a>
-
   <div id="alpha_index"><%= ("a".."z").map{|i| @index_gems.include?(i) ? "<a href='#jump_#{i}'>#{i}</a>" : i }.join(" - ") %></div>
 
   <ul class="gemlist">
