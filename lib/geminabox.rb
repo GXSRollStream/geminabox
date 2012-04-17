@@ -65,17 +65,13 @@ class Geminabox < Sinatra::Base
     end
   end
 
-  get '/upload' do
-    erb :upload
+  get '/gems/*.gem' do
+    status File.exists?(file_path) ? 302 : 404
   end
 
   get '/reindex' do
     reindex(:force_rebuild)
     redirect url("/")
-  end
-
-  get '/gems/*.gem' do
-    status  File.exists?(file_path) ? 302 : 404
   end
 
   #remove support for delete
@@ -91,6 +87,10 @@ class Geminabox < Sinatra::Base
     FileUtils.rm_rf File.expand_path(File.join(Geminabox.data, "gems"))
     reindex(:force_rebuild)
     redirect url("/")
+  end
+
+  get '/query/*.gem' do
+    puts file_path
   end
 
   post '/upload' do

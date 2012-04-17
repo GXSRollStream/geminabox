@@ -36,7 +36,9 @@ class Hostess < Sinatra::Base
     end
   end
 
+=begin
   get "/gems/*.gem" do
     serve
   end
+=end
 end
