@@ -75,13 +75,11 @@ class Geminabox < Sinatra::Base
   end
 
   #remove support for delete
-=begin
   delete '/gems/*.gem' do
     File.delete file_path if File.exists? file_path
     reindex(:force_rebuild)
     redirect url("/")
   end
-=end
 
   delete '/gems' do
     FileUtils.rm_rf File.expand_path(File.join(Geminabox.data, "gems"))
