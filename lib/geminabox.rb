@@ -65,8 +65,8 @@ class Geminabox < Sinatra::Base
     end
   end
 
-  get '/gems/*.gem' do
-    status File.exists?(file_path) ? 302 : 404
+  get '/query/*.gem' do
+    status File.exists?(file_path) ? 200 : 404
   end
 
   get '/reindex' do
